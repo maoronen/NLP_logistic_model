@@ -5,6 +5,7 @@ from nltk.corpus import stopwords
 import nltk
 nltk.download('stopwords')
 import pickle
+import os
 
 import re
 import string
@@ -65,4 +66,9 @@ def predict_tweet():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = os.environ.get('PORT')
+    if port:
+        app.run(host='0.0.0.0', port=int(port))
+    else:
+        app.run()
+
